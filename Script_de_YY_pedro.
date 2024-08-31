@@ -1,0 +1,229 @@
+-- Cria a interface
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local CloseButton = Instance.new("TextButton")
+local ActivateButton = Instance.new("TextButton")
+local DeactivateButton = Instance.new("TextButton")
+
+-- Configurações da interface
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(0.5, 0.5, 0.5)
+Frame.Position = UDim2.new(0.5, -100, 0.5, -50)
+Frame.Size = UDim2.new(0, 200, 0, 100)
+Frame.Active = true
+Frame.Draggable = true
+
+-- Botão de fechar
+CloseButton.Parent = Frame
+CloseButton.BackgroundColor3 = Color3.new(1, 0, 0)
+CloseButton.Position = UDim2.new(1, -25, 0, 0)
+CloseButton.Size = UDim2.new(0, 25, 0, 25)
+CloseButton.Text = "X"
+
+-- Botão de ativar
+ActivateButton.Parent = Frame
+ActivateButton.BackgroundColor3 = Color3.new(0, 1, 0)
+ActivateButton.Position = UDim2.new(0.5, -50, 0.3, -10)
+ActivateButton.Size = UDim2.new(0, 100, 0, 25)
+ActivateButton.Text = "Ativar"
+
+-- Botão de desativar
+DeactivateButton.Parent = Frame
+DeactivateButton.BackgroundColor3 = Color3.new(1, 1, 0)
+DeactivateButton.Position = UDim2.new(0.5, -50, 0.7, -10)
+DeactivateButton.Size = UDim2.new(0, 100, 0, 25)
+DeactivateButton.Text = "Desativar"
+
+-- Função para fixar a mira
+local function lockAim()
+    local player = game.Players.LocalPlayer
+    local camera = workspace.CurrentCamera
+    local targetPlayer = nil
+
+    -- Função para encontrar o jogador mais próximo
+    local function findClosestPlayer()
+        local closestDistance = math.huge
+        for _, v in pairs(game.Players:GetPlayers()) do
+            if v ~= player and v.Character and v.Character:FindFirstChild("HumanoidRootPart") then
+                local distance = (v.Character.HumanoidRootPart.Position - player.Character.HumanoidRootPart.Position).magnitude
+                if distance < closestDistance then
+                    closestDistance = distance
+                    targetPlayer = v
+                end
+            end
+        end
+    end
+
+    -- Função para atualizar a mira
+    local function updateAim()
+        if targetPlayer and targetPlayer.Character and targetPlayer.Character:FindFirstChild("HumanoidRootPart") then
+            local targetPosition = targetPlayer.Character.HumanoidRootPart.Position
+            camera.CFrame = CFrame.new(camera.CFrame.Position, targetPosition)
+        end
+    end
+
+    -- Loop para manter a mira fixa
+    local aimLoop = game:GetService("RunService").RenderStepped:Connect(function()
+        findClosestPlayer()
+        updateAim()
+    end)
+
+    -- Função para desativar a mira
+    local function deactivateAim()
+        aimLoop:Disconnect()
+    end
+
+    -- Conecta os botões às funções
+    CloseButton.MouseButton1Click:Connect(function()
+        ScreenGui:Destroy()
+    end)
+
+    DeactivateButton.MouseButton1Click:Connect(function()
+        deactivateAim()
+    end)
+end
+
+-- Conecta o botão de ativar à função de fixar a mira
+ActivateButton.MouseButton1Click:Connect(function()
+    lockAim()
+end)
+
+--agilidade
+
+-- Criação da interface
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local CloseButton = Instance.new("TextButton")
+local StartButton = Instance.new("TextButton")
+local StopButton = Instance.new("TextButton")
+
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(1, 1, 1)
+Frame.Position = UDim2.new(0.5, -100, 0.5, -50)
+Frame.Size = UDim2.new(0, 200, 0, 100)
+Frame.Active = true
+Frame.Draggable = true
+
+CloseButton.Parent = Frame
+CloseButton.Text = "X"
+CloseButton.Size = UDim2.new(0, 20, 0, 20)
+CloseButton.Position = UDim2.new(1, -25, 0, 5)
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+StartButton.Parent = Frame
+StartButton.Text = "Iniciar"
+StartButton.Size = UDim2.new(0, 80, 0, 30)
+StartButton.Position = UDim2.new(0.1, 0, 0.5, -15)
+
+StopButton.Parent = Frame
+StopButton.Text = "Parar"
+StopButton.Size = UDim2.new(0, 80, 0, 30)
+StopButton.Position = UDim2.new(0.5, 0, 0.5, -15)
+
+-- Função de agilidade
+local agilityBoost = false
+local function boostAgility()
+    local player = game.Players.LocalPlayer
+    local character = player.Character or player.CharacterAdded:Wait()
+    local humanoid = character:WaitForChild("Humanoid")
+    
+    while agilityBoost do
+        humanoid.WalkSpeed = 300 -- Aumenta a velocidade de caminhada
+        wait(0.1)
+    end
+    
+    humanoid.WalkSpeed = 16 -- Reseta a velocidade de caminhada
+end
+
+StartButton.MouseButton1Click:Connect(function()
+    agilityBoost = true
+    boostAgility()
+end)
+
+StopButton.MouseButton1Click:Connect(function()
+    agilityBoost = false
+end)
+
+-- Cria a interface
+local ScreenGui = Instance.new("ScreenGui")
+local Frame = Instance.new("Frame")
+local CloseButton = Instance.new("TextButton")
+local GodButton = Instance.new("TextButton")
+local GodToggleButton = Instance.new("TextButton")
+local KillAuraButton = Instance.new("TextButton")
+local KillAuraToggleButton = Instance.new("TextButton")
+
+-- Configurações da interface
+ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
+Frame.Parent = ScreenGui
+Frame.BackgroundColor3 = Color3.new(0, 0, 0) -- Cor preta
+Frame.Position = UDim2.new(0.5, -150, 0.5, -100)
+Frame.Size = UDim2.new(0, 300, 0, 200)
+Frame.Active = true
+Frame.Draggable = true
+
+-- Botão de fechar
+CloseButton.Parent = Frame
+CloseButton.BackgroundColor3 = Color3.new(1, 0, 0)
+CloseButton.Position = UDim2.new(1, -25, 0, 0)
+CloseButton.Size = UDim2.new(0, 25, 0, 25)
+CloseButton.Text = "X"
+CloseButton.MouseButton1Click:Connect(function()
+    ScreenGui:Destroy()
+end)
+
+-- Botão God
+GodButton.Parent = Frame
+GodButton.BackgroundColor3 = Color3.new(0, 1, 0)
+GodButton.Position = UDim2.new(0.1, 0, 0.2, 0)
+GodButton.Size = UDim2.new(0, 100, 0, 25)
+GodButton.Text = "God"
+
+-- Botão de ligar/desligar God
+GodToggleButton.Parent = Frame
+GodToggleButton.BackgroundColor3 = Color3.new(1, 1, 0)
+GodToggleButton.Position = UDim2.new(0.5, 0, 0.2, 0)
+GodToggleButton.Size = UDim2.new(0, 100, 0, 25)
+GodToggleButton.Text = "Ligar/Desligar"
+
+-- Função para ativar/desativar God Mode
+local godModeActive = false
+GodToggleButton.MouseButton1Click:Connect(function()
+    godModeActive = not godModeActive
+    if godModeActive then
+        game.Players.LocalPlayer.Character.Humanoid.MaxHealth = 9999999
+        game.Players.LocalPlayer.Character.Humanoid.Health = 9999999
+    else
+        game.Players.LocalPlayer.Character.Humanoid.MaxHealth = 999999
+        game.Players.LocalPlayer.Character.Humanoid.Health = 9999999
+    end
+end)
+
+-- Botão KillAura
+KillAuraButton.Parent = Frame
+KillAuraButton.BackgroundColor3 = Color3.new(0, 1, 0)
+KillAuraButton.Position = UDim2.new(0.1, 0, 0.5, 0)
+KillAuraButton.Size = UDim2.new(0, 100, 0, 25)
+KillAuraButton.Text = "KillAura"
+
+-- Botão de ligar/desligar KillAura
+KillAuraToggleButton.Parent = Frame
+KillAuraToggleButton.BackgroundColor3 = Color3.new(1, 1, 0)
+KillAuraToggleButton.Position = UDim2.new(0.5, 0, 0.5, 0)
+KillAuraToggleButton.Size = UDim2.new(0, 100, 0, 25)
+KillAuraToggleButton.Text = "Ligar/Desligar"
+
+-- Função para ativar/desativar KillAura
+local killAuraActive = false
+KillAuraToggleButton.MouseButton1Click:Connect(function()
+    killAuraActive = not killAuraActive
+    if killAuraActive then
+        -- Adicione o script "q" aqui
+    else
+        -- Remova o script "bang" aqui
+    end
+end)
