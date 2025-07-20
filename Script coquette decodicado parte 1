@@ -1,0 +1,218 @@
+Se x == 90 então
+    t[w[125]] = t[w[107]][b[w[187]]]
+
+Senão
+    c = w[107]
+    f = w[125]
+    j = c + 2
+    k = { t[c](t[c+1], t[j]) }
+
+    Para n de 1 até f faça
+        t[j+n] = k[n]
+    FimPara
+
+    c = t[c+3]
+    Se c existe então
+        t[j] = c
+    Senão
+        l = l + 1
+    Fim
+FimSe
+
+Se x <= 93 então
+    Se x ~= 93 então
+        t[w[107]] = a(g[w[187]], nil)
+    Senão
+        t[w[125]] = tamanho(t[w[187]])
+    Fim
+Senão Se x >= 95 então
+    Se x == 95 então
+        c = t[w[125]]
+        Se c não existe então
+            l = l + 1
+        Senão
+            t[w[107]] = c
+            l = w[187]
+        Fim
+    Senão
+        c = w[125]
+        t[c] = t[c](t[c+1])
+    Fim
+Senão
+    c = w[125]
+    t[c] = t[c](e(t, c+1, w[107]))
+Fim
+
+Se x >= 152 então
+    Se x >= 163 então
+        Se x >= 168 então
+            Se x <= 170 então
+                Se x == 169 então
+                    t[w[107]] = não t[w[187]]
+                Senão
+                    t[w[125]]()
+                Fim
+            Senão
+                h[l] = { [125]=w[125], [107]=w[107], [187]=w[187], [136]=163 }
+                l = l - 1
+            Fim
+        Senão Se x <= 171 então
+            t[w[107]] = b[w[187]]
+        Senão Se x ~= 173 então
+            t[w[125]] = {}
+        Senão
+            c = w[107]
+            (f, g) = unpack(t[c](e(t, c+1, w[187])))
+            u = g + c - 1
+            g = 0
+            Para j de c até u faça
+                g = g + 1
+                t[j] = f[g]
+            FimPara
+        Fim
+    Senão Se x == 164 então
+        t[w[125]] = t[w[107]][b[w[187]]]
+    Senão
+        retorne
+    Fim
+Senão Se x == 165 então
+    c = w[125]
+    f = t[w[107]]
+    t[c+1] = f
+    t[c] = f[b[w[187]]]
+Senão Se x < 167 então
+    c = w[125]
+    (f, g) = unpack(t[c](e(t, c+1, w[107])))
+    u = g + c - 1
+    g = 0
+    Para i de c até u faça
+        g = g + 1
+        t[i] = f[g]
+    FimPara
+Senão
+    t[w[107]] = (w[187] ~= 0)
+    l = l + 1
+Fim
+
+Se x <= 156 então
+    Se x == 153 então
+        t[w[125]] = t[w[107]][b[w[187]]]
+    Senão Se x >= 155 então
+        Se x == 156 então
+            c = w[125]
+            t[c](e(t, c+1, u))
+        Senão
+            h[l] = { [136]=163, [125]=w[125], [107]=w[107], [187]=w[187] }
+            l = l - 1
+        Fim
+    Senão
+        t[w[125]] = t[w[107]][b[w[187]]]
+    Fim
+Senão Se x == 158 então
+    t[w[125]] = t[w[107]][b[w[187]]]
+Senão Se x == 159 então
+    c = w[125]
+    t[c](e(t, c+1, u))
+Senão
+    t[w[125]] = t[w[107]][b[w[187]]]
+Fim
+
+Se x == 161 então
+    retorne t[w[125]]
+Senão
+    c = w[107]
+    t[c](e(t, c+1, u))
+Fim
+
+Se x <= 140 então
+    Se x == 139 então
+        c = w[125]
+        f = t[w[107]]
+        t[c+1] = f
+        t[c] = f[b[w[187]]]
+    Senão
+        c = w[107]
+        retorne e(t, c, u)
+    Fim
+Senão Se x == 136 então
+    c = w[125]
+    f = { t[c](e(t, c+1, w[107])) }
+    g = 0
+    Para i de c até w[187] faça
+        g = g + 1
+        t[i] = f[g]
+    FimPara
+Senão Se t[w[107]] então
+    l = l + 1
+Senão
+    l = w[187]
+Fim
+
+Se x == 133 então
+    c = w[107]
+    f = { t[c](t[c+1]) }
+    g = 0
+    Para i de c até w[125] faça
+        g = g + 1
+        t[i] = f[g]
+    FimPara
+Senão Se x == 132 então
+    t[w[107]] = t[w[187]][t[w[125]]]
+Senão Se x < 131 então
+    t[w[107]] = o(t[w[187]], t[w[125]])
+Senão
+    c = w[125]
+    t[c] = t[c](e(t, c+1, w[107]))
+Fim
+
+Se x == 148 então
+    c = w[125]
+    t[c] = t[c](e(t, c+1, w[187]))
+Senão Se x == 147 então
+    t[w[107]] = m(t[w[187]], t[w[125]])
+Senão
+    c = w[187]
+    e = t[c]
+    Para f de c+1 até w[125] faça
+        e = e .. t[f]
+    FimPara
+    t[w[107]] = e
+Fim
+
+Se x == 149 então
+    retorne t[w[107]]
+Senão Se x == 150 então
+    h[l] = { [125]=w[125], [107]=w[107]+5, [187]=w[187], [136]=15 }
+    l = l - 1
+Senão
+    c = w[107]
+    e = t[c+2]
+    f = t[c] + e
+    t[c] = f
+    Se e > 0 então
+        Se f <= t[c+1] então
+            l = w[187]
+            t[c+3] = f
+        Fim
+    Senão Se f >= t[c+1] então
+        l = w[187]
+        t[c+3] = f
+    Fim
+Fim
+
+Se x == 144 então
+    retorne t[w[125]]
+Senão Se x == 143 então
+    t[w[125]] = t[w[107]][b[w[187]]]
+Senão Se x == 142 então
+    c = w[125]
+    e = t[w[107]]
+    t[c+1] = e
+    t[c] = e[b[w[187]]]
+Senão
+    h[l] = { [136]=149, [125]=w[125], [107]=w[107], [187]=w[187]+1 }
+    l = l - 1
+Fim
+
+l = l + 1
+retorne a(d(), {})()
